@@ -12,7 +12,7 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import dynamic from "next/dynamic";
-import { redirect,Route, BrowserRouter as Router } from "react-router-dom";
+import { Redirect, Route, BrowserRouter as Router } from "react-router-dom";
 
 
 

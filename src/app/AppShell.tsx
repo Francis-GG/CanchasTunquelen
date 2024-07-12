@@ -1,6 +1,6 @@
 import { IonApp, IonRouterOutlet, setupIonicReact, IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { redirect, Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 setupIonicReact({});
 
