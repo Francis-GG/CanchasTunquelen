@@ -1,15 +1,21 @@
-import { IonApp, IonRouterOutlet, setupIonicReact, IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
+import { IonApp, IonRouterOutlet, setupIonicReact, IonContent } from "@ionic/react";
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
-import { home, calendarNumber, notifications, personCircleOutline, time } from 'ionicons/icons';
+import { home, calendarNumber, notifications, personCircleOutline, time, settingsSharp } from 'ionicons/icons';
+
 import React from 'react';
 
+{/* Paginas */ }
 import HomePage from './pages/Home/HomePage';
 import PerfilPage from './pages/Perfil/PerfilPage';
 import ReservaPage from './pages/Reserva/ReservaPage';
 import HistorialPage from "./pages/Historial/HistorialPage";
 import NotificacionesPage from "./pages/Notificaciones/NotificacionesPage";
+
+{/* Componentes */ }
+
+import Header from "./Components/Header/header";
 
 setupIonicReact({});
 
@@ -17,11 +23,7 @@ function Example() {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Canchas tunquelen</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <Header />
         <IonContent>
           <IonTabs>
             <IonRouterOutlet>
