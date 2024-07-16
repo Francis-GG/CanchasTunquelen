@@ -31,15 +31,21 @@ const HomePage = () => (
                     </IonCol>
                 </IonRow>
             </IonGrid>
+            <IonGrid>
+                <IonRow>
+                    <IonCol>
+                        <IonCard className="custom-card">
+                            <IonCardHeader>
+                                <IonCardTitle>Tu Proxima Reserva</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                {"Here's a small text description for the card content. Nothing more, nothing less."}
+                            </IonCardContent>
+                        </IonCard>
+                    </IonCol>
+                </IonRow>
+            </IonGrid>
 
-            <IonCard className="custom-card">
-                <IonCardHeader>
-                    <IonCardTitle>Tu Proxima Reserva</IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                    {"Here's a small text description for the card content. Nothing more, nothing less."}
-                </IonCardContent>
-            </IonCard>
         </IonContent>
     </>
 );
