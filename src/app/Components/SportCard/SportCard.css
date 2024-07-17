@@ -1,0 +1,9 @@
+.custom-card {
+    background-size: cover;
+    background-position: 2%;
+    background-color: #dbe1ff;
+    color: white;
+    /* Optional: to ensure text is readable */
+    min-height: 200px;
+    /* Adjust as needed */
+}

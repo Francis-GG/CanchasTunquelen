@@ -13,7 +13,7 @@ import ReservaPage from './pages/Reserva/ReservaPage';
 
 {/* Componentes */ }
 
-import Header from "./Components/Header/header";
+import Header from "./Components/Header/Header";
 
 setupIonicReact({});
 

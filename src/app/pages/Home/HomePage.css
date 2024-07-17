@@ -1,16 +1,3 @@
-.custom-card {
-    background-size: cover;
-    background-position: 2%;
-    background-color: #dbe1ff;
-    color: white;
-    /* Optional: to ensure text is readable */
-    min-height: 200px;
-    /* Adjust as needed */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 #padel-card {
     background-image: url('/padel.png');
 }
@@ -23,7 +10,7 @@
     background-image: url('https://ionicframework.com/docs/img/demos/card-media.png');
 }
 
-.nombre-usuario {
+.home-page-nombre-usuario {
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
@@ -31,7 +18,7 @@
     margin-bottom: 30px
 }
 
-.usuario-color {
+.home-page-usuario-color {
     color: #366af7;
     /* Cambia #FF0000 por el código de color que prefieras */
 }
