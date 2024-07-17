@@ -5,48 +5,42 @@ import './HomePage.css'
 
 const HomePage = () => (
     <>
-
         <IonContent>
-            <IonGrid>
+            <h1 className='nombre-usuario'>HOLA <span className="usuario-color">USUARIO</span></h1>
+            <IonGrid className="mx-auto p-4">
                 <IonRow>
-                    <IonCol>
-                        <IonCard className="custom-card">
+                    <IonCol size='6' size-md='6'>
+                        <IonCard className="custom-card small-card" id='padel-card'>
                             <IonCardHeader>
-                                <IonCardTitle>Tenis</IonCardTitle>
+                                <IonCardTitle className='font-bold'>Padel</IonCardTitle>
                             </IonCardHeader>
-                            <IonCardContent>
-                                {"Here's a small text description for the card content. Nothing more, nothing less."}
-                            </IonCardContent>
+
                         </IonCard>
                     </IonCol>
-                    <IonCol>
-                        <IonCard className="custom-card">
+                    <IonCol size='6' size-md='6'>
+                        <IonCard className="custom-card" id='tennis-card'>
                             <IonCardHeader>
-                                <IonCardTitle>Tenis</IonCardTitle>
+                                <IonCardTitle className='font-bold'>Tenis</IonCardTitle>
                             </IonCardHeader>
-                            <IonCardContent>
-                                {"Here's a small text description for the card content. Nothing more, nothing less."}
-                            </IonCardContent>
                         </IonCard>
                     </IonCol>
                 </IonRow>
-            </IonGrid>
-            <IonGrid>
-                <IonRow>
-                    <IonCol>
-                        <IonCard className="custom-card">
+
+                <IonRow className="mt-4">
+                    <IonCol size="12">
+                        <IonCard className="custom-card" id='next-match'>
                             <IonCardHeader>
                                 <IonCardTitle>Tu Proxima Reserva</IonCardTitle>
                             </IonCardHeader>
                             <IonCardContent>
-                                {"Here's a small text description for the card content. Nothing more, nothing less."}
+                                {"nada"}
                             </IonCardContent>
                         </IonCard>
                     </IonCol>
                 </IonRow>
             </IonGrid>
-
         </IonContent>
+
     </>
 );
 
