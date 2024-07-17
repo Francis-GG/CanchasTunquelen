@@ -1,7 +1,8 @@
 .profile-page {
-    background: var(--ion-color-primary);
+    background: #22577A;
     border-radius: 25px;
     padding-bottom: 18vh;
+    padding: 20px;
 }
 
 .custom-avatar-image {
@@ -10,7 +11,7 @@
     ion-avatar {
         width: 25vh;
         height: 25vh;
-        border: 3px solid var(--ion-color-warning);
+        border: 3px solid #80ED99;
         padding: 0.8vh;
         margin-bottom: 6vh;
     }
@@ -22,16 +23,59 @@
     }
 }
 
-ion-item {
+
+.profile-page ion-item {
+
 
     ion-label {
         font-size: 1.5rem;
         font-weight: 600;
+
+        ion-text {
+            color: #22577A;
+        }
 
         p {
             font-size: 1rem;
             font-weight: bold;
             margin-top: 10px;
         }
+
+        .status {
+            margin-top: 15px;
+        }
+
+        #house-number {
+            color: #38A3A5;
+        }
+
+        #status-text {
+            color: #57CC99;
+        }
     }
+}
+
+.profile-page .button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile-page ion-button {
+    width: 80%;
+    margin-top: 10px;
+}
+
+.profile-page .change-password-button {
+    color: white;
+}
+
+.profile-page .logout-button {
+
+    color: white;
+}
+
+.profile-page .delete-account-button {
+    color: white;
 }

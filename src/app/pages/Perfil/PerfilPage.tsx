@@ -1,6 +1,7 @@
 import React from 'react';
-import { IonAvatar, IonCard, IonContent, IonItem, IonLabel, IonText } from '@ionic/react';
-import './PerfilPage.css'
+import { IonAvatar, IonButton, IonCard, IonContent, IonItem, IonLabel, IonText, IonIcon } from '@ionic/react';
+import { lockClosedOutline, logOutOutline, trashOutline } from 'ionicons/icons';
+import './PerfilPage.css';
 
 const PerfilPage = () => (
     <>
@@ -14,14 +15,33 @@ const PerfilPage = () => (
 
                 <IonItem lines="none" className="profile">
                     <IonLabel className="ion-text-center">
-                        <IonText color="secondary">
-                            Francisco
+                        <IonText>
+                            Francisco González
                         </IonText>
                         <p>
-                            <IonText color="medium">Casa 157</IonText>
+                            <IonText id="house-number">Casa 157</IonText>
+                        </p>
+                        <p className="status">
+                            <IonText>Estado:</IonText>
+                            <IonText id="status-text"> activo</IonText>
                         </p>
                     </IonLabel>
                 </IonItem>
+
+                <div className="button-group animate-fade-in-up">
+                    <IonButton className="custom-button change-password-button" expand="block">
+                        <IonIcon slot="start" icon={lockClosedOutline} />
+                        Cambiar Contraseña
+                    </IonButton>
+                    <IonButton className="custom-button logout-button" expand="block">
+                        <IonIcon slot="start" icon={logOutOutline} />
+                        Cerrar Sesión
+                    </IonButton>
+                    <IonButton className="custom-button delete-account-button" expand="block" color="danger">
+                        <IonIcon slot="start" icon={trashOutline} />
+                        Eliminar Cuenta
+                    </IonButton>
+                </div>
             </IonCard>
         </IonContent>
     </>
