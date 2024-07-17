@@ -1,5 +1,5 @@
 .profile-page {
-    background: #22577A;
+    background: #fff;
     border-radius: 25px;
     padding-bottom: 18vh;
     padding: 20px;
@@ -11,7 +11,7 @@
     ion-avatar {
         width: 25vh;
         height: 25vh;
-        border: 3px solid #80ED99;
+        border: 3px solid #0054e9;
         padding: 0.8vh;
         margin-bottom: 6vh;
     }
@@ -26,17 +26,22 @@
 
 .profile-page ion-item {
 
+    .ion-item.profile {
+        --background: transparent;
+    }
+
 
     ion-label {
-        font-size: 1.5rem;
+
         font-weight: 600;
 
         ion-text {
-            color: #22577A;
+            color: #000;
+            font-size: 1rem;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 0.5rem;
             font-weight: bold;
             margin-top: 10px;
         }
@@ -46,11 +51,11 @@
         }
 
         #house-number {
-            color: #38A3A5;
+            color: #000;
         }
 
         #status-text {
-            color: #57CC99;
+            color: #009a29;
         }
     }
 }

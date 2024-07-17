@@ -15,7 +15,7 @@ const PerfilPage = () => (
 
                 <IonItem lines="none" className="profile">
                     <IonLabel className="ion-text-center">
-                        <IonText>
+                        <IonText className="user-name">
                             Francisco González
                         </IonText>
                         <p>
