@@ -11,10 +11,10 @@ const HomePage = () => (
         <IonGrid className="mx-auto p-4">
             <IonRow>
                 <IonCol size='6' size-md='6'>
-                    <SportCard title="Padel" backgroundImage="/padel.png" />
+                    <SportCard title="Padel" backgroundImage="/padel.png" redirectTo='/main' courtType='padel' />
                 </IonCol>
                 <IonCol size='6' size-md='6'>
-                    <SportCard title="Tenis" backgroundImage="/tennis.png" />
+                    <SportCard title="Tenis" backgroundImage="/tennis.png" redirectTo='/main' courtType='tennis' />
                 </IonCol>
             </IonRow>
 
