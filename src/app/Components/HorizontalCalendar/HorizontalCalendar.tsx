@@ -1,30 +1,58 @@
-import React from 'react';
-import { IonGrid, IonRow, IonCol } from '@ionic/react';
-import './HorizontalCalendar.css';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { IonContent, IonText, IonChip, IonItem } from '@ionic/react';
+import 'swiper/css';
+import SwiperCore from 'swiper';
+import { FreeMode, Pagination } from 'swiper/modules';
+SwiperCore.use([Pagination, FreeMode]);
 
-const generatePlaceholders = () => {
-    const placeholders = [];
-    for (let i = 0; i < 27; i++) {
-        placeholders.push(`Day ${i + 1}`);
-    }
-    return placeholders;
-};
+const days = Array.from({ length: 30 }, (_, i) => {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    return {
+        day: date.toLocaleDateString('es-CL', { weekday: 'short' }),
+        date: date.getDate(),
+    };
+});
 
 const HorizontalCalendar = () => {
-    const placeholders = generatePlaceholders();
+    const [selectedDay, setSelectedDay] = useState<number | null>(null);
+
+    const handleDayClick = (index: number) => {
+        setSelectedDay(index);
+    };
 
     return (
-        <IonGrid className="horizontal-calendar" fixed={true} >
-            <IonRow >
-                {placeholders.map((placeholder, index) => (
-                    <IonCol size="auto" key={index} className="calendar-day">
-                        <div className="day-content">
-                            <p>{placeholder}</p>
+        <div className="bg-gray-100 p-6">
+            <Swiper
+                spaceBetween={10}
+                slidesPerView={5}
+                pagination={{ clickable: true }}
+                freeMode={true}
+
+
+            >
+                {days.map((day, index) => (
+                    <SwiperSlide key={index}>
+                        <div
+                            className={`flex rounded-full mx-1 transition-all duration-300 cursor-pointer justify-center w-16 ${selectedDay === index ? 'bg-purple-600 shadow-lg' : 'bg-purple-400'
+                                }`}
+                            onClick={() => handleDayClick(index)}
+                            style={{ padding: '10px' }}
+                        >
+                            <div className="text-center">
+                                <p className={`text-sm transition-all duration-300 ${selectedDay === index ? 'text-gray-100 font-semibold' : 'text-gray-900'}`}>
+                                    {day.day}
+                                </p>
+                                <p className={`text-xl transition-all duration-300 ${selectedDay === index ? 'text-gray-100 font-bold' : 'text-gray-900'}`}>
+                                    {day.date}
+                                </p>
+                            </div>
                         </div>
-                    </IonCol>
+                    </SwiperSlide>
                 ))}
-            </IonRow>
-        </IonGrid>
+            </Swiper>
+        </div>
     );
 };
 
