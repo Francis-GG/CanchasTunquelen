@@ -1,8 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { IonContent } from '@ionic/react';
+import { IonContent, IonButton, IonActionSheet } from '@ionic/react';
+
+// components
 import HorizontalCalendar from '@/app/Components/HorizontalCalendar/HorizontalCalendar';
 import CanchasSport from '@/app/Components/CanchasSport/CanchasSport';
+import HorarioCanchas from '@/app/Components/HorarioCanchas/HorarioCanchas';
 
 const MainPage = () => {
     const location = useLocation();
@@ -14,6 +17,29 @@ const MainPage = () => {
     return (
         <IonContent>
             <CanchasSport sport={courtType} />
+            <HorizontalCalendar />
+            <HorarioCanchas />
+            <IonButton className='mx-auto mt-10 p-10' expand='block' id='open-action-sheet'>Reservar</IonButton>
+            <IonActionSheet
+                trigger="open-action-sheet"
+                header="Desea confirmar la reserva?"
+                buttons={[
+                    {
+                        text: 'Confirmar Reserva',
+                        role: 'destructive',
+                        data: {
+                            action: 'delete',
+                        },
+                    },
+                    {
+                        text: 'Cancelar',
+                        role: 'cancel',
+                        data: {
+                            action: 'cancel',
+                        },
+                    },
+                ]}
+            ></IonActionSheet>
         </IonContent>
     );
 };
