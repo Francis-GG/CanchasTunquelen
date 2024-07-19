@@ -5,6 +5,7 @@ import { IonContent, IonButton, IonActionSheet } from '@ionic/react';
 // components
 import HorizontalCalendar from '@/app/Components/HorizontalCalendar/HorizontalCalendar';
 import CanchasSport from '@/app/Components/CanchasSport/CanchasSport';
+import DayCalendar from '@/app/Components/DayCalendar/DayCalendar';
 import HorarioCanchas from '@/app/Components/HorarioCanchas/HorarioCanchas';
 
 const MainPage = () => {
@@ -18,7 +19,7 @@ const MainPage = () => {
         <IonContent>
             <CanchasSport sport={courtType} />
             <HorizontalCalendar />
-            <HorarioCanchas />
+            <DayCalendar />
             <IonButton className='mx-auto mt-10 p-10' expand='block' id='open-action-sheet'>Reservar</IonButton>
             <IonActionSheet
                 trigger="open-action-sheet"
