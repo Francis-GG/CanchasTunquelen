@@ -11,6 +11,8 @@ import HomePage from './pages/Home/HomePage';
 import PerfilPage from './pages/Perfil/PerfilPage';
 import ReservaPage from './pages/Reserva/ReservaPage';
 import MainPage from './pages/Main/MainPage';
+import LoginPage from "./pages/Login/LoginPage";
+
 
 {/* Componentes */ }
 
@@ -28,6 +30,7 @@ function Example() {
             <IonRouterOutlet>
               <Redirect exact path="/" to="/home" />
               <Route path="/home" component={HomePage} exact={true} />
+              <Route path="/login" component={LoginPage} exact={true} />
               <Route path="/reserva" component={ReservaPage} exact={true} />
               <Route path="/perfil" component={PerfilPage} exact={true} />
               <Route path="/main" component={MainPage} exact={true} />
