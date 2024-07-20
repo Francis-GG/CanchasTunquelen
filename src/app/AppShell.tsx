@@ -28,9 +28,9 @@ function Example() {
         <IonContent>
           <IonTabs>
             <IonRouterOutlet>
-              <Redirect exact path="/" to="/login" />
-              <Route path="/login" component={LoginPage} exact={true} />
+              <Redirect exact path="/" to="/home" />
               <Route path="/home" component={HomePage} exact={true} />
+              <Route path="/login" component={LoginPage} exact={true} />
               <Route path="/reserva" component={ReservaPage} exact={true} />
               <Route path="/perfil" component={PerfilPage} exact={true} />
               <Route path="/main" component={MainPage} exact={true} />
