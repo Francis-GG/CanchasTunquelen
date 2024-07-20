@@ -2,7 +2,7 @@ import React from 'react';
 import { IonContent, IonCard, IonCardContent, IonItem, IonInput, IonButton, IonIcon } from '@ionic/react';
 import { lockClosed, mail } from 'ionicons/icons';
 
-const LoginPage = () => (
+const SignUpPage = () => (
     <>
         <div className="bg-[#613FA0] h-1/2 rounded-b-3xl p-4 flex flex-col items-center text-white">
             <div className="flex items-center justify-center h-1/2 mb-4">
@@ -21,13 +21,17 @@ const LoginPage = () => (
                     </IonItem>
                     <IonItem className="bg-gray-100 mb-4">
                         <IonIcon icon={lockClosed} slot='start' className="text-gray-600" />
-                        <IonInput type='password' placeholder='Password' />
+                        <IonInput type='password' placeholder='Contraseña' />
                     </IonItem>
-                    <IonButton expand='block' color={"button-color"}>Iniciar Sesión</IonButton>
+                    <IonItem className="bg-gray-100 mb-4">
+                        <IonIcon icon={lockClosed} slot='start' className="text-gray-600" />
+                        <IonInput type='password' placeholder='Confirmar contraseña' />
+                    </IonItem>
+                    <IonButton expand='block' color={"button-color"}>Registrarse</IonButton>
                 </IonCardContent>
             </IonCard>
         </div>
     </>
 );
 
-export default LoginPage;
+export default SignUpPage;
