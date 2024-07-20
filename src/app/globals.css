@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 :root {
+  --ion-color-button-color: #613FA0;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+}
+
+.ion-color-button-color {
+  --ion-color-base: var(--ion-color-button-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,12 +23,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
