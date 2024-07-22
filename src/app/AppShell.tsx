@@ -13,12 +13,11 @@ import ReservaPage from './pages/Reserva/ReservaPage';
 import MainPage from './pages/Main/MainPage';
 import LoginPage from "./pages/Login/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
-import UserDataForm from "./pages/UserDataForm/UserDataForm";
 
 
 {/* Componentes */ }
 
-import Header from "./Components/Header/Header";
+import Header from "./Components/Header/header";
 
 setupIonicReact({});
 
@@ -34,7 +33,6 @@ function Example() {
               <Route path="/home" component={HomePage} exact={true} />
               <Route path="/login" component={LoginPage} exact={true} />
               <Route path="/signup" component={SignUpPage} exact={true} />
-              <Route path="/userdata" component={UserDataForm} exact={true} />
               <Route path="/reserva" component={ReservaPage} exact={true} />
               <Route path="/perfil" component={PerfilPage} exact={true} />
               <Route path="/main" component={MainPage} exact={true} />
