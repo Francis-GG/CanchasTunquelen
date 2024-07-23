@@ -5,10 +5,11 @@ import './HomePage.css'
 
 import SportCard from '@/app/Components/SportCard/SportCard';
 
+
 const HomePage = () => (
-    <IonContent>
+    <>
         <h1 className='home-page-nombre-usuario'>HOLA <span className="home-page-usuario-color">USUARIO</span></h1>
-        <IonGrid className="mx-auto p-4">
+        <IonGrid className="p-4 w-full">
             <IonRow>
                 <IonCol size='6' size-md='6'>
                     <SportCard title="Padel" backgroundImage="/padel.png" redirectTo='/main' courtType='padel' />
@@ -31,7 +32,7 @@ const HomePage = () => (
                 </IonCol>
             </IonRow>
         </IonGrid>
-    </IonContent>
+    </>
 );
 
 export default HomePage;

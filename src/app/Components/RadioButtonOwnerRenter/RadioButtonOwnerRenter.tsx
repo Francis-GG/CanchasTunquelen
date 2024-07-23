@@ -19,6 +19,7 @@ const RadioButtonOwnerRenter: React.FC<RadioButtonOwnerRenterProps> = ({ onSelec
         <div className="flex justify-evenly gap-4 my-4 pt-4">
             <div className="flex flex-col items-center">
                 <button
+                    type='button'
                     className={`w-12 h-12 rounded-full flex items-center justify-center text-xl ${selected === 'owner' ? 'bg-[#613FA0] text-white' : 'bg-gray-200 text-black'
                         }`}
                     onClick={() => handleSelectionChange('owner')}
@@ -29,6 +30,7 @@ const RadioButtonOwnerRenter: React.FC<RadioButtonOwnerRenterProps> = ({ onSelec
             </div>
             <div className="flex flex-col items-center">
                 <button
+                    type='button'
                     className={`w-12 h-12 rounded-full flex items-center justify-center text-xl ${selected === 'renter' ? 'bg-[#613FA0] text-white' : 'bg-gray-200 text-black'
                         }`}
                     onClick={() => handleSelectionChange('renter')}
