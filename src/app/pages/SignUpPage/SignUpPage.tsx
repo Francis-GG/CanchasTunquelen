@@ -20,6 +20,7 @@ const SignUpPage = () => {
         formState: { errors, isSubmitting },
         reset,
         getValues,
+        setValue,
     } = useForm();
 
 
@@ -28,7 +29,7 @@ const SignUpPage = () => {
     const handleRegister = async (data: FieldValues) => {
         console.log('password', data.password)
         console.log('confirmpassword', data.confirmPassword)
-        registerWithEmail(data.email, data.password);
+        await registerWithEmail(data.email, data.password);
 
         reset();
         setStep(2);
@@ -55,18 +56,28 @@ const SignUpPage = () => {
                 lastName: data.lastName,
                 houseNumber: data.houseNumber,
                 phone: data.number,
-                role: 'owner',
+                role: data.role,
             });
+            setStep(0);
             history.push('/home');
         } catch (error) {
             console.error('Error setting user data: ', error);
             alert('Error guardando datos de usuario');
         }
-    }
+
+
+    };
+
+    const handleRoleChange = (role: 'owner' | 'renter' | null) => {
+        setValue('role', role);
+    };
 
 
     return (
+
+
         <IonPage>
+
             {step === 1 ? (
                 <>
                     <div className="bg-[#613FA0] h-1/2 rounded-b-3xl p-4 flex flex-col items-center text-white">
@@ -96,7 +107,7 @@ const SignUpPage = () => {
                                         <IonInput {...register("confirmPassword", { required: "Se requiere confirmar la contraseña", validate: (value) => value === getValues("password") || "Las contraseñas deben ser iguales" })} type='password' placeholder='Confirmar contraseña' />
                                     </IonItem>
                                     {errors.confirmPassword && (<p className="text-red-500 text-xs pl-8">{`${errors.confirmPassword.message}`}</p>)}
-                                    <IonButton className='pt-3' expand='block' color={"button-color"} type='submit'>Registrarse</IonButton>
+                                    <IonButton className='pt-3' expand='block' color={"button-color"} type='submit' disabled={isSubmitting}>{isSubmitting ? 'Registrando...' : 'Registrarse'}</IonButton>
                                 </IonCardContent>
                             </IonCard>
                         </form>
@@ -136,9 +147,12 @@ const SignUpPage = () => {
                                         <IonInput {...register("number", { required: "Se requiere un número de teléfono" })} type='text' placeholder='Teléfono' />
                                     </IonItem>
                                     {errors.number && (<p className="text-red-500 text-xs pl-8">{`${errors.number.message}`}</p>)}
+                                    <RadioButtonOwnerRenter onSelectionChange={handleRoleChange} />
                                     {/* <RadioButtonOwnerRenter onSelectionChange={(selection) => setRole(selection!)} /> */}
 
-                                    <IonButton expand='block' color={"button-color"} type='submit'>Finalizar</IonButton>
+                                    <IonButton expand='block' color={"button-color"} type='submit' disabled={isSubmitting}>
+                                        {isSubmitting ? 'Guardando...' : 'Finalizar'}
+                                    </IonButton>
                                 </IonCardContent>
                             </IonCard>
                         </form>

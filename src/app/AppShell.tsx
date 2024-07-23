@@ -1,12 +1,12 @@
 import { IonApp, IonRouterOutlet, setupIonicReact, IonContent } from "@ionic/react";
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonPage } from '@ionic/react';
 import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route } from "react-router-dom";
-import { home, calendarNumber, notifications, personCircleOutline, time, settingsSharp } from 'ionicons/icons';
+import { Redirect, Route, useLocation } from "react-router-dom";
+import { home, calendarNumber, personCircleOutline } from 'ionicons/icons';
 
 import React from 'react';
 
-{/* Paginas */ }
+// Pages
 import HomePage from './pages/Home/HomePage';
 import PerfilPage from './pages/Perfil/PerfilPage';
 import ReservaPage from './pages/Reserva/ReservaPage';
@@ -14,28 +14,54 @@ import MainPage from './pages/Main/MainPage';
 import LoginPage from "./pages/Login/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
-
-{/* Componentes */ }
-
+// Components
 import Header from "./Components/Header/header";
 
-setupIonicReact({});
+setupIonicReact();
 
-function Example() {
+const AppShell = () => (
+  <IonApp>
+    <IonReactRouter>
+      <AppContent />
+    </IonReactRouter>
+  </IonApp>
+);
+
+const AppContent = () => {
+  const location = useLocation();
+  console.log(location.pathname);
+  const showHeaderAndTabs = location.pathname !== "/login" && location.pathname !== "/signup";
+
   return (
-    <IonApp>
-      <IonReactRouter>
-        <Header />
-        <IonContent>
+    <>
+      {showHeaderAndTabs && <Header />}
+      <IonContent>
+        {showHeaderAndTabs ? (
           <IonTabs>
             <IonRouterOutlet>
-              <Redirect exact path="/" to="/home" />
-              <Route path="/home" component={HomePage} exact={true} />
-              <Route path="/login" component={LoginPage} exact={true} />
-              <Route path="/signup" component={SignUpPage} exact={true} />
-              <Route path="/reserva" component={ReservaPage} exact={true} />
-              <Route path="/perfil" component={PerfilPage} exact={true} />
-              <Route path="/main" component={MainPage} exact={true} />
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+              <Route path="/home" exact>
+                <IonPage>
+                  <HomePage />
+                </IonPage>
+              </Route>
+              <Route path="/reserva" exact>
+                <IonPage>
+                  <ReservaPage />
+                </IonPage>
+              </Route>
+              <Route path="/perfil" exact>
+                <IonPage>
+                  <PerfilPage />
+                </IonPage>
+              </Route>
+              <Route path="/main" exact>
+                <IonPage>
+                  <MainPage />
+                </IonPage>
+              </Route>
             </IonRouterOutlet>
 
             <IonTabBar slot="bottom">
@@ -45,7 +71,7 @@ function Example() {
               </IonTabButton>
 
               <IonTabButton tab="reserva" href="/reserva">
-                <IonIcon icon={calendarNumber} /> {/* Remove size="large" as it's not supported */}
+                <IonIcon icon={calendarNumber} />
                 <IonLabel>Reserva</IonLabel>
               </IonTabButton>
 
@@ -55,10 +81,23 @@ function Example() {
               </IonTabButton>
             </IonTabBar>
           </IonTabs>
-        </IonContent>
-      </IonReactRouter>
-    </IonApp>
+        ) : (
+          <IonRouterOutlet>
+            <Route path="/login" exact>
+              <IonPage>
+                <LoginPage />
+              </IonPage>
+            </Route>
+            <Route path="/signup" exact>
+              <IonPage>
+                <SignUpPage />
+              </IonPage>
+            </Route>
+          </IonRouterOutlet>
+        )}
+      </IonContent>
+    </>
   );
-}
+};
 
-export default Example;
+export default AppShell;
