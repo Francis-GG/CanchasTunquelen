@@ -4,7 +4,8 @@ import { lockClosedOutline, logOutOutline, trashOutline } from 'ionicons/icons';
 import { getUserData } from '@/app/firebase/services/firestoreService';
 import { logout, DeleteUser } from '@/app/firebase/services/authservice';
 import { useHistory } from 'react-router-dom';
-import { auth } from '@/app/firebase/config';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { auth, fireStore } from '@/app/firebase/config';
 import './PerfilPage.css';
 
 const PerfilPage = () => {
@@ -46,6 +47,7 @@ const PerfilPage = () => {
 
     const handleDeleteAccount = async () => {
         try {
+            await deleteDoc(doc(fireStore, 'Usuarios', auth.currentUser!.uid));
             await DeleteUser(auth.currentUser!);
             history.push('/welcome');
         } catch (error) {
@@ -83,11 +85,11 @@ const PerfilPage = () => {
                         <IonIcon slot="start" icon={lockClosedOutline} />
                         Cambiar Contraseña
                     </IonButton>
-                    <IonButton className="custom-button logout-button" expand="block" onClick={handleLogout}>
+                    <IonButton className="custom-button logout-button" expand="block" type='button' onClick={handleLogout}>
                         <IonIcon slot="start" icon={logOutOutline} />
                         Cerrar Sesión
                     </IonButton>
-                    <IonButton className="custom-button delete-account-button" expand="block" color="danger" onClick={handleDeleteAccount}>
+                    <IonButton className="custom-button delete-account-button" expand="block" color="danger" type='button' onClick={handleDeleteAccount}>
                         <IonIcon slot="start" icon={trashOutline} />
                         Eliminar Cuenta
                     </IonButton>
