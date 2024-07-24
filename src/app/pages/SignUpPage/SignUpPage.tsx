@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonContent, IonCard, IonCardContent, IonItem, IonInput, IonButton, IonIcon, IonPage } from '@ionic/react';
+import { IonCard, IonCardContent, IonItem, IonInput, IonButton, IonIcon, IonPage } from '@ionic/react';
 import { lockClosed, mail, person, home, call } from 'ionicons/icons';
 import { registerWithEmail } from '@/app/firebase/services/authservice';
 import { fireStore, auth } from '@/app/firebase/config';
@@ -94,7 +94,7 @@ const SignUpPage = () => {
                                 <IonCardContent>
                                     <IonItem className="bg-gray-100 mb-4">
                                         <IonIcon icon={mail} slot='start' className="text-gray-600" />
-                                        <IonInput {...register("email", { required: "Se requiere un email válido" })} type='text' placeholder='Email' />
+                                        <IonInput {...register("email", { required: "Se requiere un email válido" })} type='email' placeholder='Email' />
                                     </IonItem>
                                     {errors.email && (<p className="text-red-500 text-xs pl-8">{`${errors.email.message}`}</p>)}
                                     <IonItem className="bg-gray-100 mb-4">
