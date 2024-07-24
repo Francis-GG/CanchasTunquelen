@@ -1,8 +1,10 @@
 import { auth } from '../config';
+import { User } from 'firebase/auth';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
+    deleteUser,
     onAuthStateChanged,
     GoogleAuthProvider,
     signInWithPopup
@@ -48,8 +50,17 @@ const logout = async () => {
     }
 };
 
+const DeleteUser = async (user: User) => {
+    try {
+        await deleteUser(user);
+    } catch (error) {
+        console.error("Error deleting user: ", error);
+        throw error;
+    }
+}
+
 const authStateListener = (callback: (user: any) => void) => {
     return onAuthStateChanged(auth, callback);
 };
 
-export { registerWithEmail, loginWithEmail, loginWithGoogle, logout, authStateListener };
+export { registerWithEmail, loginWithEmail, loginWithGoogle, logout, authStateListener, DeleteUser };
