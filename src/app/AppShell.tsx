@@ -11,8 +11,9 @@ import HomePage from './pages/Home/HomePage';
 import PerfilPage from './pages/Perfil/PerfilPage';
 import ReservaPage from './pages/Reserva/ReservaPage';
 import MainPage from './pages/Main/MainPage';
-import LoginPage from "./pages/Login/LoginPage";
-import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import LoginPage from './pages/Login/LoginPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
 
 // Components
 import Header from "./Components/Header/header";
@@ -30,7 +31,7 @@ const AppShell = () => (
 const AppContent = () => {
   const location = useLocation();
   console.log(location.pathname);
-  const showHeaderAndTabs = location.pathname !== "/login" && location.pathname !== "/signup";
+  const showHeaderAndTabs = location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/welcome";
 
   return (
     <>
@@ -83,13 +84,18 @@ const AppContent = () => {
           </IonTabs>
         ) : (
           <IonRouterOutlet>
+            <Route path="/welcome" exact>
+              <IonPage className='bg-custom-gray'>
+                <WelcomePage />
+              </IonPage>
+            </Route>
             <Route path="/login" exact>
-              <IonPage>
+              <IonPage className='bg-custom-gray'>
                 <LoginPage />
               </IonPage>
             </Route>
             <Route path="/signup" exact>
-              <IonPage>
+              <IonPage className='bg-custom-gray'>
                 <SignUpPage />
               </IonPage>
             </Route>
