@@ -33,7 +33,9 @@ const HomePage = () => {
 
     return (
         <>
-            <h1 className='home-page-nombre-usuario'>HOLA <span className="home-page-usuario-color">{userName || 'USUARIO'} </span></h1>
+            <div className="absolute top-0 right-0 w-72 h-72 bg-[#613FA0] rounded-full translate-x-1/2 translate-y-1/4 z-0"></div>
+            <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#613FA0] rounded-full -translate-x-1/2 translate-y-1/2 z-0"></div>
+            <h1 className='home-page-nombre-usuario z-10'>HOLA <span className="home-page-usuario-color">{userName || 'USUARIO'} </span></h1>
             <IonGrid className="p-4 w-full">
                 <IonRow>
                     <IonCol size='6' size-md='6'>

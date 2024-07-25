@@ -5,6 +5,8 @@ import './ReservaPage.css';
 
 const ReservaPage = () => (
     <IonContent>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-[#613FA0] rounded-full -translate-x-44 translate-y-1/6"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#613FA0] rounded-full translate-x-44 -translate-y-1/6"></div>
         <IonGrid className="mx-auto p-4 h-full flex justify-evenly items-center">
             <IonRow className='w-full'>
                 <IonCol size='12'>
