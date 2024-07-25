@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { IonAvatar, IonButton, IonCard, IonContent, IonItem, IonLabel, IonText, IonIcon, IonPage } from '@ionic/react';
+import { IonAvatar, IonButton, IonCard, IonContent, IonItem, IonLabel, IonText, IonIcon } from '@ionic/react';
 import { lockClosedOutline, logOutOutline, trashOutline } from 'ionicons/icons';
 import { getUserData } from '@/app/firebase/services/firestoreService';
 import { logout, DeleteUser } from '@/app/firebase/services/authservice';
 import { useHistory } from 'react-router-dom';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { auth, fireStore } from '@/app/firebase/config';
-import './PerfilPage.css';
 
 const PerfilPage = () => {
 
@@ -55,47 +54,49 @@ const PerfilPage = () => {
         }
     };
 
-
     return (
-        <IonContent>
-            <IonCard className="profile-page">
-                <div className="flex justify-center items-center custom-avatar-image">
-                    <IonAvatar>
-                        <img src="/panda.png" alt="profile-image" />
+        <>
+            <div className="absolute top-0 left-0 w-72 h-72 bg-[#613FA0] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#613FA0] rounded-full translate-x-1/2 translate-y-1/2"></div>
+
+            <IonCard className="bg-white rounded-[25px] pb-[16vh] max-w-md shadow-lg z-10 border-2 border-gray-100">
+                <div className="flex justify-center items-center transform translate-y-[5vh] mb-[6vh]">
+                    <IonAvatar className="w-[25vh] h-[25vh] border-4 border-custom-purple p-[0.8vh]">
+                        <img src="/panda.png" alt="profile-image" className="w-full h-full object-cover" />
                     </IonAvatar>
                 </div>
 
-                <IonItem lines="none" className="profile">
-                    <IonLabel className="ion-text-center">
-                        <IonText className="user-name">
+                <IonItem lines="none" className="flex flex-col items-center justify-center bg-transparent py-4">
+                    <IonLabel className="text-center font-semibold">
+                        <IonText className="text-black text-lg">
                             {userName} {userLastName}
                         </IonText>
-                        <p>
-                            <IonText id="house-number">Casa {userHouseNumber}</IonText>
+                        <p className="text-xs font-bold mt-2 text-black">
+                            <IonText>Casa {userHouseNumber}</IonText>
                         </p>
-                        <p className="status">
+                        <p className="text-xs font-bold mt-4">
                             <IonText>Estado:</IonText>
-                            <IonText id="status-text"> activo</IonText>
+                            <IonText className="text-[#009a29]"> activo</IonText>
                         </p>
                     </IonLabel>
                 </IonItem>
 
-                <div className="button-group animate-fade-in-up">
-                    <IonButton className="custom-button change-password-button" expand="block">
+                <div className="flex flex-col items-center mt-5 space-y-3 animate-fade-in-up">
+                    <IonButton className="w-4/5 text-white hover:bg-[#512e80] transition-colors" expand="block" color='button-color'>
                         <IonIcon slot="start" icon={lockClosedOutline} />
                         Cambiar Contraseña
                     </IonButton>
-                    <IonButton className="custom-button logout-button" expand="block" type='button' onClick={handleLogout}>
+                    <IonButton className="w-4/5 text-white hover:bg-[#512e80] transition-colors" expand="block" color='button-color' onClick={handleLogout}>
                         <IonIcon slot="start" icon={logOutOutline} />
                         Cerrar Sesión
                     </IonButton>
-                    <IonButton className="custom-button delete-account-button" expand="block" color="danger" type='button' onClick={handleDeleteAccount}>
+                    <IonButton className="w-4/5 text-white hover:bg-red-700 transition-colors" expand="block" color="danger" onClick={handleDeleteAccount}>
                         <IonIcon slot="start" icon={trashOutline} />
                         Eliminar Cuenta
                     </IonButton>
                 </div>
             </IonCard>
-        </IonContent>
+        </>
     );
 };
 
