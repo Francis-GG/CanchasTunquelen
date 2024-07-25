@@ -56,6 +56,7 @@ const LoginPage = () => {
                             </IonItem>
                             {errors.password && (<p className="text-red-500 text-xs pl-8">{`${errors.password.message}`}</p>)}
                             <IonButton className='pt-3' expand='block' color={"button-color"} type='submit' disabled={isSubmitting}>{isSubmitting ? 'Iniciando Sesión...' : 'Iniciar Sesión'}</IonButton>
+                            <span onClick={() => history.push('/reset')} className="flex justify-end mt-4" style={{ textDecoration: 'underline' }}>¿Olvidaste tu contraseña?</span>
 
                         </IonCardContent>
                     </IonCard>
