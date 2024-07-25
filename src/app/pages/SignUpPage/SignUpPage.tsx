@@ -86,7 +86,7 @@ const SignUpPage = () => {
                                 <img src="logo-canchas.svg" alt="logo-canchas" className="w-3/4" />
                             </div>
                         </div>
-                        <h1 className="text-2xl font-bold text-center">Regístrate</h1>
+                        <h1 className="text-2xl font-bold text-center">Bienvenido de vuelta</h1>
                     </div>
                     <div className="absolute top-1/3 left-2 right-2 mx-auto">
                         <form onSubmit={handleSubmit(handleRegister)}>
