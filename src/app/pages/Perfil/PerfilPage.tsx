@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IonAvatar, IonButton, IonCard, IonContent, IonItem, IonLabel, IonText, IonIcon } from '@ionic/react';
-import { lockClosedOutline, logOutOutline, trashOutline, pencilSharp } from 'ionicons/icons';
+import { lockClosedOutline, logOutOutline, trashOutline, pencilSharp, image } from 'ionicons/icons';
 import { getUserData } from '@/app/firebase/services/firestoreService';
 import { logout, DeleteUser } from '@/app/firebase/services/authservice';
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { auth, fireStore } from '@/app/firebase/config';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { uploadProfileImage } from '@/app/firebase/services/storageservice';
+import { updateProfile } from 'firebase/auth';
 
 const PerfilPage = () => {
 
@@ -76,11 +77,15 @@ const PerfilPage = () => {
 
             if (photo.base64String) {
                 const imageUrl = await uploadProfileImage(user.uid, photo.base64String);
-                setProfileImage(imageUrl);
 
                 await updateDoc(doc(fireStore, 'Usuarios', user.uid), {
                     profileImage: imageUrl,
                 });
+
+                await updateProfile(user, { photoURL: imageUrl });
+
+                setProfileImage(imageUrl);
+
             }
         } catch (error) {
             console.error('Error al intentar subir la imagen:', error);

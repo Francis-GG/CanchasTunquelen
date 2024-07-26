@@ -12,14 +12,19 @@ const days = Array.from({ length: 30 }, (_, i) => {
     return {
         day: date.toLocaleDateString('es-CL', { weekday: 'short' }),
         date: date.getDate(),
+        fullDate: new Date(date),
     };
 });
 
-const HorizontalCalendar = () => {
-    const [selectedDay, setSelectedDay] = useState<number | null>(null);
+type HorizontalCalendarProps = {
+    selectedDay: Date;
+    setSelectedDay: React.Dispatch<React.SetStateAction<Date>>;
+};
 
-    const handleDayClick = (index: number) => {
-        setSelectedDay(index);
+const HorizontalCalendar: React.FC<HorizontalCalendarProps> = ({ selectedDay, setSelectedDay }) => {
+    const handleDayClick = (dayDate: Date) => {
+        setSelectedDay(dayDate);
+
     };
 
     return (
@@ -35,16 +40,16 @@ const HorizontalCalendar = () => {
                 {days.map((day, index) => (
                     <SwiperSlide key={index}>
                         <div
-                            className={`flex rounded-full mx-1 transition-all duration-300 cursor-pointer justify-center w-16 ${selectedDay === index ? 'bg-purple-600 shadow-lg' : 'bg-purple-400'
+                            className={`flex rounded-full mx-1 transition-all duration-300 cursor-pointer justify-center w-16 ${selectedDay === day.fullDate ? 'bg-purple-600 shadow-lg' : 'bg-purple-400'
                                 }`}
-                            onClick={() => handleDayClick(index)}
+                            onClick={() => handleDayClick(day.fullDate)}
                             style={{ padding: '10px' }}
                         >
                             <div className="text-center">
-                                <p className={`text-sm transition-all duration-300 ${selectedDay === index ? 'text-gray-100 font-semibold' : 'text-gray-900'}`}>
+                                <p className={`text-sm transition-all duration-300 ${selectedDay === day.fullDate ? 'text-gray-100 font-semibold' : 'text-gray-900'}`}>
                                     {day.day}
                                 </p>
-                                <p className={`text-xl transition-all duration-300 ${selectedDay === index ? 'text-gray-100 font-bold' : 'text-gray-900'}`}>
+                                <p className={`text-xl transition-all duration-300 ${selectedDay === day.fullDate ? 'text-gray-100 font-bold' : 'text-gray-900'}`}>
                                     {day.date}
                                 </p>
                             </div>
