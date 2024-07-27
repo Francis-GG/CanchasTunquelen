@@ -40,7 +40,7 @@ const HorizontalCalendar: React.FC<HorizontalCalendarProps> = ({ selectedDay, se
                 {days.map((day, index) => (
                     <SwiperSlide key={index}>
                         <div
-                            className={`flex rounded-full mx-1 transition-all duration-300 cursor-pointer justify-center w-16 ${selectedDay === day.fullDate ? 'bg-purple-600 shadow-lg' : 'bg-purple-400'
+                            className={`flex rounded-full mx-2 p-10 transition-all duration-300 cursor-pointer justify-evenly w-16 ${selectedDay === day.fullDate ? 'bg-purple-600 shadow-lg' : 'bg-purple-400'
                                 }`}
                             onClick={() => handleDayClick(day.fullDate)}
                             style={{ padding: '10px' }}
