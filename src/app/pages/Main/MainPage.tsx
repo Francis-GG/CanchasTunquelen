@@ -82,7 +82,7 @@ const MainPage: React.FC = () => {
             <HorizontalCalendar selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
             <DayCalendar reservations={reservations} selectedTime={selectedTime} onTimeSelect={(time) => setSelectedTime(time)} />
             <IonButton
-                className='mx-auto mt-10 p-10'
+                className='mx-auto px-10'
                 expand='block'
                 id='open-action-sheet'
                 onClick={() => setIsActionSheetOpen(true)}

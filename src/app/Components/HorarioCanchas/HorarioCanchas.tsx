@@ -27,7 +27,7 @@ const HorarioCanchas = () => {
                         <IonChip
                             color="secondary"
                             onClick={() => handleTimeClick(horario)}
-                            className={`text-lg cursor-pointer transition-all duration-300 ${selectedTime === horario ? 'bg-purple-600 text-white shadow-lg' : 'secondary'}`}
+                            className={`text-lg cursor-pointer transition-all duration-300 ${selectedTime === horario ? 'bg-purple-600 text-white' : 'secondary'}`}
                         >
                             {horario}
                         </IonChip>
