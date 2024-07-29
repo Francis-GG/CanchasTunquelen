@@ -5,6 +5,7 @@ import { registerWithEmail } from '@/app/firebase/services/authservice';
 import { fireStore, auth } from '@/app/firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
 import { useHistory } from 'react-router-dom';
+import { updateProfile } from 'firebase/auth';
 
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -37,15 +38,20 @@ const SignUpPage = () => {
 
     const handleUserDataSubmit = async (data: FieldValues) => {
         try {
-            const userId = auth.currentUser?.uid;
-            if (!userId) {
+
+            const user = auth.currentUser;
+
+            if (!user) {
                 // Handle the case where userId is undefined
                 console.error('User is not logged in');
                 alert('Error: Usuario no está logueado');
                 return; // Exit the function early
             }
 
+            const userId = user.uid;
             const name = data.name;
+            const lastName = data.lastName;
+            const displayName = `${name} ${lastName}`;
 
             console.log('userId', userId);
             console.log('data', data);
@@ -58,6 +64,9 @@ const SignUpPage = () => {
                 phone: data.number,
                 role: data.role,
             });
+
+            await updateProfile(user, { displayName, photoURL: '/panda.png' })
+
             setStep(0);
             history.push('/home');
         } catch (error) {

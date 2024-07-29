@@ -31,7 +31,6 @@ const AppShell = () => (
 
 const AppContent = () => {
   const location = useLocation();
-  console.log(location.pathname);
   const showHeaderAndTabs = location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/welcome" && location.pathname !== "/reset" && location.pathname !== "/";
 
   return (

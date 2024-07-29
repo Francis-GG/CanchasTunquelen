@@ -3,14 +3,14 @@ import { IonGrid, IonRow, IonCol, IonChip } from '@ionic/react';
 
 interface CanchasSportProps {
     sport: string;
+    courtNumber: number;
+    setCourtNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function CanchasSport({ sport }: CanchasSportProps) {
-
-    const [selectedCourt, setSelectedCourt] = useState<number | null>(null);
+function CanchasSport({ sport, courtNumber, setCourtNumber }: CanchasSportProps) {
 
     const handleCourtClick = (index: number) => {
-        setSelectedCourt(index);
+        setCourtNumber(index);
     }
 
     let canchas: string[] = [];
@@ -26,7 +26,7 @@ function CanchasSport({ sport }: CanchasSportProps) {
             <IonRow className='justify-center'>
                 {canchas.map((cancha, index) => (
                     <IonCol size='4' key={index} className='flex justify-center items-center'>
-                        <IonChip onClick={() => handleCourtClick(index)} className={`text-base transition-all duration-300 ${selectedCourt === index ? 'text-gray-100 font-bold bg-purple-600 shadow-lg' : 'text-gray-900'}`} color="secondary">{cancha}</IonChip>
+                        <IonChip onClick={() => handleCourtClick(index)} className={`text-base transition-all duration-300 ${courtNumber === index ? 'text-gray-100 font-bold bg-purple-600 shadow-lg' : 'text-gray-900'}`} color="secondary">{cancha}</IonChip>
                     </IonCol>
                 ))}
             </IonRow>

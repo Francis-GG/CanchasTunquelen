@@ -4,6 +4,8 @@
 
 :root {
   --ion-color-button-color: #613FA0;
+  --ion-color-light-purple: #c084fc;
+  --ion-color-custom-gray: #e0dfe6;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -11,6 +13,18 @@
 
 .ion-color-button-color {
   --ion-color-base: var(--ion-color-button-color);
+}
+
+.ion-color-light-purple {
+  --ion-color-base: var(--ion-color-light-purple);
+}
+
+.ion-color-custom-gray {
+  --ion-color-base: var(--ion-color-custom-gray);
+}
+
+.ion-item-selected {
+  background-color: #613FA0;
 }
 
 ion-toast.custom-toast {

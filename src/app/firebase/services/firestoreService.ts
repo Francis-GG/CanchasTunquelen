@@ -1,5 +1,5 @@
 import { fireStore } from '../config';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, orderBy, limit, deleteDoc } from 'firebase/firestore';
 
 const getUserData = async (userId: string) => {
     try {
@@ -18,5 +18,32 @@ const getUserData = async (userId: string) => {
     }
 };
 
+const deleteUserReservation = async (reservationId: string) => {
+    console.log('Deleting reservation: ', reservationId);
+    try {
+        await deleteDoc(doc(fireStore, 'Reservas', reservationId));
+    } catch (error) {
+        console.error('Error deleting reservation: ', error);
+        throw error;
+    }
+};
 
-export { getUserData };
+export const getUserReservations = async (userId: string) => {
+    const bookingsRef = collection(fireStore, 'Reservas');
+    const q = query(
+        bookingsRef,
+        where('userId', '==', userId),
+        orderBy('date'),
+        orderBy('time'),
+        limit(3)
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+    }));
+}
+
+
+export { getUserData, deleteUserReservation };
