@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonTitle, IonHeader, IonToolbar } from '@ionic/react';
+import { IonGrid, IonCol, IonRow, useIonViewWillEnter } from '@ionic/react';
 import { getAuth } from 'firebase/auth';
-import { getUserData } from '@/app/firebase/services/firestoreService';
+import { getUserData, getUserReservations } from '@/app/firebase/services/firestoreService';
+import { Reservation } from '@/app/types';
 import './HomePage.css'
 
 import SportCard from '@/app/Components/SportCard/SportCard';
+import ReservasMain from '@/app/Components/ReservasMain/ReservasMain';
 
 
 const HomePage = () => {
 
     const [userName, setUserName] = useState('');
+    const [nextReservations, setNextReservations] = useState<Reservation[]>([]);
 
-    useEffect(() => {
+    useIonViewWillEnter(() => {
+        console.log('HomePage useEffect');
         const fetchUserData = async () => {
             const auth = getAuth();
             const user = auth.currentUser;
@@ -22,6 +26,9 @@ const HomePage = () => {
                     if (userData) {
                         setUserName(userData.name);
                     }
+
+                    const reservations = await getUserReservations(user.uid);
+                    setNextReservations(reservations as Reservation[]);
                 } catch (error) {
                     console.error('Error fetching user data: ', error)
                 }
@@ -29,7 +36,7 @@ const HomePage = () => {
         };
 
         fetchUserData();
-    }, []);
+    });
 
     return (
         <>
@@ -48,14 +55,7 @@ const HomePage = () => {
 
                 <IonRow className="mt-4">
                     <IonCol size="12">
-                        <IonCard className="custom-card" id='next-match'>
-                            <IonCardHeader>
-                                <IonCardTitle>Tu Proxima Reserva</IonCardTitle>
-                            </IonCardHeader>
-                            <IonCardContent>
-                                {"nada"}
-                            </IonCardContent>
-                        </IonCard>
+                        <ReservasMain nextReservations={nextReservations} setNextReservations={setNextReservations} />
                     </IonCol>
                 </IonRow>
             </IonGrid>

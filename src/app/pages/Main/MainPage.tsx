@@ -25,6 +25,7 @@ const MainPage: React.FC = () => {
     const [isActionSheetOpen, setIsActionSheetOpen] = useState<boolean>(false);
 
     useEffect(() => {
+        console.log(selectedDay);
         const fetchBookings = async () => {
             const dateString = selectedDay.toISOString().split('T')[0];
             const bookingsRef = collection(fireStore, 'Reservas');
@@ -80,7 +81,7 @@ const MainPage: React.FC = () => {
         <IonContent>
             <CanchasSport sport={courtType} courtNumber={courtNumber} setCourtNumber={setCourtNumber} />
             <HorizontalCalendar selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
-            <DayCalendar reservations={reservations} selectedTime={selectedTime} onTimeSelect={(time) => setSelectedTime(time)} />
+            <DayCalendar reservations={reservations} selectedTime={selectedTime} onTimeSelect={(time) => setSelectedTime(time)} selectedDay={selectedDay} />
             <IonButton
                 className='mx-auto px-10'
                 expand='block'
