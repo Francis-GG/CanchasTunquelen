@@ -7,7 +7,8 @@ import {
     deleteUser,
     onAuthStateChanged,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    sendPasswordResetEmail
 } from 'firebase/auth';
 
 const registerWithEmail = async (email: string, password: string) => {
@@ -57,10 +58,19 @@ const DeleteUser = async (user: User) => {
         console.error("Error deleting user: ", error);
         throw error;
     }
-}
+};
+
+const resetPassword = async (email: string): Promise<void> => {
+    try {
+        await sendPasswordResetEmail(auth, email);
+
+    } catch (error) {
+        console.error('Error al enviar correo para restablecer contraseña.', error)
+    }
+};
 
 const authStateListener = (callback: (user: any) => void) => {
     return onAuthStateChanged(auth, callback);
 };
 
-export { registerWithEmail, loginWithEmail, loginWithGoogle, logout, authStateListener, DeleteUser };
+export { registerWithEmail, loginWithEmail, loginWithGoogle, logout, authStateListener, DeleteUser, resetPassword };

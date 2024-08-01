@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { IonAvatar, IonButton, IonCard, IonContent, IonItem, IonLabel, IonText, IonIcon } from '@ionic/react';
+import { IonAvatar, IonButton, IonCard, IonContent, IonItem, IonLabel, IonText, IonIcon, IonModal, IonInput, IonToast } from '@ionic/react';
 import { lockClosedOutline, logOutOutline, trashOutline, pencilSharp, image } from 'ionicons/icons';
 import { getUserData } from '@/app/firebase/services/firestoreService';
-import { logout, DeleteUser } from '@/app/firebase/services/authservice';
+import { logout, DeleteUser, resetPassword } from '@/app/firebase/services/authservice';
 import { useHistory } from 'react-router-dom';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { auth, fireStore } from '@/app/firebase/config';
@@ -17,6 +17,9 @@ const PerfilPage = () => {
     const [userLastName, setUserLastName] = useState('');
     const [userHouseNumber, setUserHouseNumber] = useState('');
     const [profileImage, setProfileImage] = useState('/panda.png')
+    const [showResetPasswordModal, setShowResetPasswordModal] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -92,9 +95,28 @@ const PerfilPage = () => {
         }
     };
 
+    const handlePasswordReset = async () => {
+        const user = auth.currentUser;
+
+        if (user && user.email) {
+            try {
+                await resetPassword(user.email);
+                setToastMessage('Se ha enviado un correo para restablecer tu contraseña.');
+            } catch (error) {
+                setToastMessage('Error al enviar el correo de restablecimiento.');
+                console.error('Error resetting password: ', error);
+            }
+            setShowToast(true);
+        } else {
+            setToastMessage('No se pudo obtener el correo electrónico del usuario.');
+            setShowToast(true);
+        }
+        setShowResetPasswordModal(false);
+    };
+
     return (
         <>
-            <div className="absolute top-0 left-0 w-72 h-72 bg-[#613FA0] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute top-0 left-0 w-72   h-72 bg-[#613FA0] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#613FA0] rounded-full translate-x-1/2 translate-y-1/2"></div>
 
             <IonCard className="bg-white rounded-[25px] pb-[16vh] max-w-md shadow-lg z-10 border-2 border-gray-100">
@@ -128,7 +150,12 @@ const PerfilPage = () => {
 
                 <div className="flex flex-col items-center mt-5 space-y-3 animate-fade-in-up">
 
-                    <IonButton className="w-4/5 text-white hover:bg-[#512e80] transition-colors" expand="block" color='button-color'>
+                    <IonButton
+                        className="w-4/5 text-white hover:bg-[#512e80] transition-colors"
+                        expand="block"
+                        color="button-color"
+                        onClick={() => setShowResetPasswordModal(true)}
+                    >
                         <IonIcon slot="start" icon={lockClosedOutline} />
                         Cambiar Contraseña
                     </IonButton>
@@ -142,6 +169,27 @@ const PerfilPage = () => {
                     </IonButton>
                 </div>
             </IonCard>
+
+            <IonModal isOpen={showResetPasswordModal} onDidDismiss={() => setShowResetPasswordModal(false)}>
+                <div className="p-5">
+                    <h2 className="text-lg font-bold mb-4">Restablecer Contraseña</h2>
+                    <p className="text-sm mb-4">Se enviará un correo a {auth.currentUser?.email} para restablecer tu contraseña.</p>
+                    <div className="flex justify-end mt-4">
+                        <IonButton color="button-color" onClick={handlePasswordReset}>
+                            Enviar
+                        </IonButton>
+                        <IonButton color="medium" onClick={() => setShowResetPasswordModal(false)}>
+                            Cancelar
+                        </IonButton>
+                    </div>
+                </div>
+            </IonModal>
+            <IonToast
+                isOpen={showToast}
+                message={toastMessage}
+                duration={3000}
+                onDidDismiss={() => setShowToast(false)}
+            />
         </>
     );
 };

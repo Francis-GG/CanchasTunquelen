@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from "@ionic/react";
+import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon } from "@ionic/react";
 import { Pagination } from "swiper/modules";
 import { Reservation } from "@/app/types";
 import { deleteUserReservation } from "@/app/firebase/services/firestoreService";
@@ -10,11 +10,12 @@ import 'swiper/css/pagination';
 
 import sportTranslations from "@/app/utils/sportTranslations";
 
+import { timeOutline, calendarOutline, locationOutline } from "ionicons/icons";
+
 interface ReservasMainProps {
     nextReservations: Reservation[];
     setNextReservations: React.Dispatch<React.SetStateAction<Reservation[]>>;
 }
-
 
 const ReservasMain: React.FC<ReservasMainProps> = ({ nextReservations, setNextReservations }) => {
 
@@ -35,9 +36,9 @@ const ReservasMain: React.FC<ReservasMainProps> = ({ nextReservations, setNextRe
     };
 
     return (
-        <IonCard className="custom-card" id='next-match'>
-            <IonCardHeader>
-                <IonCardTitle>Tus Próximas Reservas</IonCardTitle>
+        <IonCard className="custom-card">
+            <IonCardHeader className="pb-1">
+                <IonCardTitle className="text-center">Reservas activas</IonCardTitle>
             </IonCardHeader>
             <Swiper
                 modules={[Pagination]}
@@ -50,20 +51,39 @@ const ReservasMain: React.FC<ReservasMainProps> = ({ nextReservations, setNextRe
                     nextReservations.length > 0 ? (
                         nextReservations.map((reservation, index) => (
                             <SwiperSlide key={index}>
-                                <IonCard className="reservation-card flex flex-col items-start justify-center p-2">
-                                    <IonCardHeader>
-                                        <IonCardTitle>
+                                <IonCard color={"#dbe1ff"} className="flex flex-col items-center justify-evenly p-4 shadow-none text-black">
+                                    <IonCardHeader className="w-full text-center py-0 text-xl">
+                                        <IonCardTitle className="text-2xl">
                                             {sportTranslations[reservation.courtType.toLowerCase()] || reservation.courtType.toUpperCase()}
                                         </IonCardTitle>
                                     </IonCardHeader>
-                                    <div className="reservation-details">
-                                        <p><strong>Fecha: {reservation.date}</strong></p>
-                                        <p><strong>Hora: {reservation.time}</strong></p>
-                                        <p><strong>Número de Cancha:</strong> {reservation.courtNumber + 1}</p>
+                                    <div className="reservation-details flex justify-around w-full mt-4">
+                                        <div className="flex flex-col items-center">
+                                            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200">
+                                                <IonIcon className="text-2xl" icon={timeOutline} />
+                                            </div>
+                                            <p className="mt-2">Hora:</p>
+                                            <p>{reservation.time}</p>
+                                        </div>
+                                        <div className="flex flex-col items-center">
+                                            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200">
+                                                <IonIcon className="text-2xl" icon={locationOutline} />
+                                            </div>
+                                            <p className="mt-2">Cancha:</p>
+                                            <p>{reservation.courtNumber + 1}</p>
+                                        </div>
+                                        <div className="flex flex-col items-center">
+                                            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200">
+                                                <IonIcon className="text-2xl" icon={calendarOutline} />
+                                            </div>
+                                            <p className="mt-2">Fecha:</p>
+                                            <p>{new Date(reservation.date).toLocaleDateString('es-CL', { day: 'numeric', month: 'long' })}</p>
+                                        </div>
                                     </div>
                                     <IonButton
                                         color="danger"
                                         onClick={() => handleDeleteReservation(reservation.id)}
+                                        className="flex justify-center w-full mt-4 px-8"
                                     >
                                         Cancelar Reserva
                                     </IonButton>
@@ -77,9 +97,8 @@ const ReservasMain: React.FC<ReservasMainProps> = ({ nextReservations, setNextRe
                     )
                 }
             </Swiper>
-        </IonCard>
+        </IonCard >
     );
 };
 
 export default ReservasMain;
-
