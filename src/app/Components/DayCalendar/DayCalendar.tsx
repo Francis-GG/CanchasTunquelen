@@ -28,8 +28,8 @@ const DayCalendar: React.FC<DayCalendarProps> = ({ reservations, selectedTime, o
     };
 
     return (
-        <div className="overflow-y-auto max-h-[46vh] pt-4">
-            <IonList inset={true}>
+        <div className="overflow-y-auto max-h-[46vh] my-4">
+            <IonList inset={false}>
                 {horarios.map((horario, index) => {
                     const reservation = reservations.find((b: Reservation) => b.time === horario);
                     const isReserved = Boolean(reservation);
@@ -59,7 +59,9 @@ const DayCalendar: React.FC<DayCalendarProps> = ({ reservations, selectedTime, o
                             <IonAvatar className="mr-4">
                                 <img
                                     alt={isReserved ? reservation!.userName : 'Default Avatar'}
-                                    src={isReserved ? reservation!.userProfileImage : 'https://ionicframework.com/docs/img/demos/avatar.svg'}
+                                    src={isReserved ? reservation!.userProfileImage : 'https://ionicframework.com/docs/img/demos/avatar.svg'
+                                    }
+                                    className="w-full h-full object-cover"
                                 />
                             </IonAvatar>
                             <IonLabel>
