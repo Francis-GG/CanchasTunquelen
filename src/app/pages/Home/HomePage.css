@@ -1,0 +1,24 @@
+#padel-card {
+    background-image: url('/padel.png');
+}
+
+#tennis-card {
+    background-image: url('/tennis.png');
+}
+
+#next-card {
+    background-image: url('https://ionicframework.com/docs/img/demos/card-media.png');
+}
+
+.home-page-nombre-usuario {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px
+}
+
+.home-page-usuario-color {
+    color: #366af7;
+    /* Cambia #FF0000 por el código de color que prefieras */
+}
